@@ -3,6 +3,6 @@
     "version"     : "*",
     "description" : "Damian Conway's Perl 6 testing module",
     "depends"     : [],
-    "repo-type"   : "git",
-    "repo-url"    : "git://github.com/colomon/perl6-Testing.git"
+    "source-type"   : "git",
+    "source-url"    : "git://github.com/colomon/perl6-Testing.git"
 }
