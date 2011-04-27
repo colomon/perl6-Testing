@@ -9,7 +9,7 @@ my $fh = IN(1,2,3);
 OK  $fh.get(),  1,            :desc<Faking first line>;
 OK  $fh.get(),  2,            :desc<Faking second line>;
 OK  $fh.get(),  3,            :desc<Faking third line>;
-OK  $fh.get(),  *.notdef,     :desc<Faking EOF>;
+OK  $fh.get(),  ! *.defined,  :desc<Faking EOF>;
 
 # Fake reading all lines...
 $fh = IN(1,2,3);
@@ -30,7 +30,7 @@ $fh = IN(1,2,3);
 OK  $fh.getc(),    "1",           :desc<Faking getc>;
 OK  $fh.getc(),    "\n",          :desc<Faking getc again>;
 OK  $fh.read(3),   "2\n3",        :desc<Faking read>;
-OK  $fh.getc(),    *.notdef,      :desc<Should now hit EOF>;
+OK  $fh.getc(),    ! *.defined,   :desc<Should now hit EOF>;
 OK  $fh.eof,       1,             :desc<Should be at EOF>;
 
 # Fake EOF...
