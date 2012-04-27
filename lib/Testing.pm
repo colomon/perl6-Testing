@@ -11,7 +11,7 @@ my $skip_reason = '';
 my $TEMPLATE = '%-13s';
 
 multi sub OK ($have? is copy = die('Missing :have argument'),
-              $want? is copy = Mu,
+              Mu $want? is copy = Mu,
               :$desc, :$SKIP, :$TODO
 ) is export {
     # Have we given up?

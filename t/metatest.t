@@ -14,13 +14,13 @@ OK   5,      *,                :desc<Whatever match>;
 OK   5,      * < 10,           :desc<WhateverCode match>;
 
 COMM "\nNegative tests...";
-OK  have =>     1, want => none( 2               ), :desc<Number mismatch>;
-OK  have =>   'a', want => none( 'b'             ), :desc<String mismatch>;
-OK  have => 'foo', want => none( /fo+d/          ), :desc<Regex mismatch>;
-OK  have =>    15, want => none( 1..10           ), :desc<Range mismatch>;
-OK  have =>    15, want => none( { $_ == 5 }     ), :desc<Block mismatch>;
-OK  have =>    15, want => none( { 4 < $^n < 6 } ), :desc<Placeholder mismatch>;
-OK  have =>    15, want => none( * < 10          ), :desc<WhateverCode mismatch>;
+OK      1, none( 2               ), :desc<Number mismatch>;
+OK    'a', none( 'b'             ), :desc<String mismatch>;
+OK  'foo', none( /fo+d/          ), :desc<Regex mismatch>;
+OK     15, none( 1..10           ), :desc<Range mismatch>;
+OK     15, none( { $_ == 5 }     ), :desc<Block mismatch>;
+OK     15, none( { 4 < $^n < 6 } ), :desc<Placeholder mismatch>;
+OK     15, none( * < 10          ), :desc<WhateverCode mismatch>;
 
 COMM "\nOne-arg negative tests...";
 OK      1 !~~ 2,                 :desc<Number mismatch>;
@@ -41,7 +41,7 @@ OK   'a', 'b',      :desc<ToDoing failing>,        :TODO<Test of todoing>;
 OK  'a' !~~ 'b',    :desc<ToDoing 1-arg failing>,  :TODO<Test of todoing>;
 OK  'a' !~~ 'a',    :desc<ToDoing 1-arg matching>, :TODO<Test of todoing>;
 
-
-COMM "\nTest named args...";
-OK   :want(1),         :have(1),           :desc<Naming want and have>;
-OK   :have<x>,         :want('y'),         :desc<Reversed names>, :TODO;
+# Positional args can no longer be used as named args -- colomon
+# COMM "\nTest named args...";
+# OK   :want(1),         :have(1),           :desc<Naming want and have>;
+# OK   :have<x>,         :want('y'),         :desc<Reversed names>, :TODO;
