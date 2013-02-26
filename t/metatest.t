@@ -1,4 +1,4 @@
-#! /Users/damian/bin/rakudo*
+#!/usr/bin/env perl6
 use v6;
 
 use Testing;

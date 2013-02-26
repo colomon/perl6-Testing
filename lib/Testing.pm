@@ -15,7 +15,7 @@ multi sub OK ($have? is copy = die('Missing :have argument'),
               :$desc, :$SKIP, :$TODO
 ) is export {
     # Have we given up?
-    fail if $skip_all;
+    return if $skip_all;
 
     # Accumulate diagnostics as we go and print at the end
     my $diagnostics = "\n";
@@ -54,11 +54,11 @@ sub COMM ($diagnostic = '') is export {
 }
 
 # Fake an input stream...
-sub IN (*@lines is copy) is export {
-    return $*IN if ($*IN & $*OUT) ~~ :t;
+sub IN (*@lines is copy, :$term-input-ok = False) is export {
+    return $*IN if $term-input-ok and ($*IN & $*OUT) ~~ :t;
 
     @lines.chomp;
-    return .new for class {
+    return ( class {
         multi method get()                  { return @lines.shift; }
         multi method close()                { @lines = () }
         multi method lines($limit = @lines) { @lines.splice(0,$limit); }
@@ -90,7 +90,7 @@ sub IN (*@lines is copy) is export {
             self.close;
             return $slurp;
         }
-    };
+    } ).new;
 }
 
 sub SKIP ($reason = '') is export {
