@@ -59,6 +59,7 @@ sub IN (*@lines is copy, :$term-input-ok = False) is export {
 
     @lines.chomp;
     return ( class {
+        also does IO;
         multi method get()                  { return @lines.shift; }
         multi method close()                { @lines = () }
         multi method lines($limit = @lines) { @lines.splice(0,$limit); }
