@@ -10,7 +10,7 @@ my $skip_reason = '';
 # Template to ensure everything lines up:
 my $TEMPLATE = '%-13s';
 
-multi sub OK ($have? is copy = die('Missing :have argument'),
+multi sub OK ($have is copy,
               Mu $want? is copy = Mu,
               :$desc, :$SKIP, :$TODO
 ) is export {
@@ -48,6 +48,14 @@ multi sub OK ($have? is copy = die('Missing :have argument'),
     print $diagnostics;
 }
 
+multi sub OK (:$have,
+              :$want,
+              :$desc,
+              :$SKIP,
+              :$TODO
+) is export {
+    OK($have, $want, :$desc, :$SKIP, :$TODO);
+}
 
 sub COMM ($diagnostic = '') is export {
     say "# $_" for $diagnostic.split("\n");

@@ -11,7 +11,7 @@ OK   5,      1..10,            :desc<Range match>;
 OK   5,      { $_ == 5 },      :desc<Block match>;
 OK   5,      { 4 < $^n < 6 },  :desc<Placeholder match>;
 OK   5,      *,                :desc<Whatever match>;
-OK   5,      * < 10,           :desc<WhateverCode match>;
+OK   have => 5, want => * < 10,           :desc<WhateverCode match>;
 
 COMM "\nNegative tests...";
 OK      1, none( 2               ), :desc<Number mismatch>;
