@@ -1,4 +1,5 @@
 {
+    "perl"        : "6.*",
     "name"        : "Testing",
     "version"     : "*",
     "description" : "Damian Conway's Perl 6 testing module",
