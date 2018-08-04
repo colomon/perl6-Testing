@@ -70,7 +70,7 @@ sub IN (*@lines is copy, :$term-input-ok = False) is export {
         also is IO::Handle;
         multi method get()                  { return @lines.shift; }
         multi method close()                { @lines = () }
-        multi method lines($limit = @lines) { @lines.splice(0,$limit); }
+        multi method lines($limit = @lines.elems) { @lines.splice(0,$limit,[]); }
         multi method getc()                 { self.read(1) }
 
         multi method eof() { return @lines == 0 }
